@@ -6,7 +6,7 @@ const LandingPage = () => {
       <a
         style={{
           "text-decoration": "none",
-          color: "white",
+          color: "black",
           "font-size": "30px",
         }}
         href="https://github.com/live2skull/DKU2021_COFFEE_FRONTEND"

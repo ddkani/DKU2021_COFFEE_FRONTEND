@@ -1,5 +1,6 @@
 #main-body {
-  background: #343a40;
-  color: #fff;
+  background-color: #fff;
+  color:black;
   min-height: 90vh;
+  overflow-x: hidden;
 }
