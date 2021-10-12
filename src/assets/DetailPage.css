@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@200&display=swap');;
+
+.contentWrap {
+    overflow-x: hidden;
+    background-color: #ffffff;
+}
+
+.imageWrap{
+    position: absolute;
+    left: 15%;
+    top: 18%;
+    /* translate: (-50%, -50%); */
+    width: 200px;
+    height: 150px;
+}
+
+.imageWrap .sampleimg {
+    position: absolute;
+    width: 400px;
+    transition: all 1s ease-in-out;
+    visibility: hidden;
+    opacity: 0;
+    
+}
+
+section.active .imageWrap img {
+    opacity: 1;
+    visibility: visible;
+ 
+}
+
+.detailWrap{
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    position: absolute;
+    width: 400px;
+    top: 10%;
+    right: 25%;
+    padding: 50px;
+}
+
+.buyWrap {
+    position: absolute;
+    bottom: 40%;
+    right: 35%;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    ;
+}
+
+.buyWrap a{
+    
+    color: black;
+    cursor: pointer;
+    margin-left: 20%;
+}
+
+.buyWrap .zzim {
+    border:30px;
+    border-radius: 15px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.buyWrap .alarmbtn {
+    border:30px;
+    border-radius: 15px;
+
+}
+section { 
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+   
+}
+
+.sampledetail {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-60%);
+    text-align: left;
+    top: 10%;
+    
+    width: 800px;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+
+
+}
