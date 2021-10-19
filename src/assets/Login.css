@@ -1,125 +1,118 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap");
 
-*{ 
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-} 
-
-html,body{  
-  display: grid;
+.in_page {
   height: 100%;
   width: 100%;
-  place-items: center;
-  background: #f0f0f0; 
- }  
-
-.wrapper{
-  width: 380px;   
   background: #fff;
-  border-radius: 15px;
-  box-shadow: 0px 15px 20px rgba(73, 55, 55, 0.514);
+  display: grid;
+  place-items: center;
 }
 
-.wrapper .title{
-  font-size: 35px;     
+.wrapper {
+  align-content: center;
+  width: 23.75rem;
+  background: #fff;
+  border-radius: 0.9rem;
+  box-shadow: 0 0.9rem 1.25rem rgba(73, 55, 55, 0.514);
+}
+
+.wrapper .title {
+  font-size: 2.188rem;
   font-weight: 600;
   text-align: center;
-  padding-top: 30px;
-  padding-bottom: 20px;
+  padding-top: 1.875rem;
+  padding-bottom: 1.25rem;
   color: rgb(87, 87, 87);
   user-select: none;
-  border-radius: 15px 15px 0 0;
+  border-radius: 0.9rem 0.9rem 0 0;
   background: rgb(255, 255, 255);
 }
 
-.wrapper .subtitle{
+.wrapper .subtitle {
   display: block;
-  font-size: 13px;
-  font-family: 'Nanum Gothic', sans-serif;
+  font-size: 0.813rem;
+  font-family: "Nanum Gothic", sans-serif;
 }
 
-.wrapper form{
-
-  padding: 10px 30px 50px 30px; 
+.wrapper .in_form {
+  padding: 0.625rem 1.875rem 3.125rem 1.875rem;
 }
 
-.wrapper form .field{
-  height: 50px; 
+.wrapper .in_form .field {
+  height: 3.125rem;
   width: 100%;
-  margin-top: 20px;
+  margin-top: 1.25rem;
   position: relative;
 }
 
-.wrapper form .field input{
+.wrapper .in_form .field input {
   height: 100%;
   width: 100%;
   outline: none;
-  font-size: 17px;
-  padding-left: 20px;
+  font-size: 1.063rem;
+  padding-left: 1.25rem;
   border: 1px solid lightgrey;
-  border-radius: 25px;
+  border-radius: 1.563rem;
   transition: all 0.3s ease;
 }
 
-.wrapper form .field input:focus,
-form .field input:valid{
-  border-color:#464646; 
+.wrapper .in_form .field input:focus,
+.in_form .field input:valid {
+  border-color: #464646;
 }
 
-.wrapper form .field label{
+.wrapper .in_form .field label {
   position: absolute;
   top: 50%;
-  left: 20px;
+  left: 1.25rem;
   color: #999999;
   font-weight: 400;
-  font-size: 17px;
+  font-size: 1.063rem;
   pointer-events: none;
   transform: translateY(-50%);
   transition: all 0.3s ease;
 }
 
-form .field input:focus ~ label,
-form .field input:valid ~ label{
+.in_form .field input:focus ~ label,
+.in_form .field input:valid ~ label {
   top: 0%;
-  font-size: 16px;
+  font-size: 1rem;
   color: #464646;
   background: #fff;
   transform: translateY(-50%);
 }
 
-form .field input[type="submit"]{
+.in_form .field input[type="submit"] {
   color: #fff;
   border: none;
   padding-left: 0;
-  margin-top: 20px;   
-  font-size: 20px;
+  margin-top: 1.25rem;
+  font-size: 1.25rem;
   font-weight: 500;
   cursor: pointer;
-  background: linear-gradient(-135deg, #b1b1b1, #383838); 
+  background: linear-gradient(-135deg, #b1b1b1, #383838);
   transition: all 0.3s ease;
 }
 
-form .field input[type="submit"]:active{
+.in_form .field input[type="submit"]:active {
   transform: scale(0.95);
 }
 
-form .signup_link,
-.login_link{
+.in_form .signup_link,
+.login_link {
   color: #262626;
-  margin-top: 40px;
+  margin-top: 2.5rem;
   text-align: center;
 }
 
-form .signup_link a,
-.login_link a{
+.in_form .signup_link .check_link,
+.login_link .check_link {
   color: #646efd;
   text-decoration: none;
 }
 
-form .signup_link a:hover,
-.login_link a:hover{
+.in_form .signup_link .check_link:hover,
+.login_link .check_link:hover {
   text-decoration: underline;
 }

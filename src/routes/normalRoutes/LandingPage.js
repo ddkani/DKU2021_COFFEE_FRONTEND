@@ -3,16 +3,27 @@ import React from "react";
 const LandingPage = () => {
   return (
     <>
+      <br />
+      <br />
+      <br />
       <a
         style={{
-          "text-decoration": "none",
+          textDecoration: "none",
           color: "black",
-          "font-size": "30px",
+          fontSize: "30px",
+          textAlign: "center",
         }}
         href="https://github.com/live2skull/DKU2021_COFFEE_FRONTEND"
       >
-        Github LINK
+        @Github LINK
       </a>
+      <div
+        style={{
+          textAlign: "center",
+        }}
+      >
+        커피두잔 상품 가격 비교 플랫폼
+      </div>
     </>
   );
 };

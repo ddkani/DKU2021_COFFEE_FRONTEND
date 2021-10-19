@@ -9,13 +9,13 @@
   position: absolute;
   left: 15%;
   top: 18%;
-  width: 200px;
-  height: 150px;
+  width: 25rem;
+  height: 15rem;
 }
 
 .imageWrap .sampleimg {
   position: absolute;
-  width: 400px;
+  width: 100%;
   transition: all 1s ease-in-out;
   visibility: hidden;
   opacity: 0;
@@ -29,10 +29,10 @@ section.active .imageWrap img {
 .detailWrap {
   font-family: "IBM Plex Sans KR", sans-serif;
   position: absolute;
-  width: 400px;
-  top: 10%;
+  width: 25rem;
+  top: 27%;
   right: 25%;
-  padding: 50px;
+  padding: 3.125;
 }
 
 .buyWrap {
@@ -45,21 +45,22 @@ section.active .imageWrap img {
 .buyWrap a {
   color: black;
   cursor: pointer;
-  margin-left: 20%;
+  margin-left: 15%;
 }
 
 .buyWrap .zzim {
-  border: 30px;
-  border-radius: 15px;
-  margin-right: 5px;
-  margin-bottom: 5px;
+  border: 1.875rem;
+  border-radius: 0.938rem;
+  margin-right: 0.313rem;
+  margin-bottom: 0.313rem;
 }
 
 .buyWrap .alarmbtn {
-  border: 30px;
-  border-radius: 15px;
+  border: 1.875rem;
+  border-radius: 0.938rem;
 }
-section {
+
+.p_section {
   position: relative;
   height: 100vh;
   width: 100vw;
@@ -71,6 +72,6 @@ section {
   transform: translateX(-60%);
   text-align: left;
   top: 10%;
-  width: 800px;
+  width: 50rem;
   font-family: "IBM Plex Sans KR", sans-serif;
 }

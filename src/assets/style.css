@@ -1,6 +1,6 @@
 #main-body {
   background-color: #fff;
-  color:black;
-  min-height: 90vh;
-  overflow-x: hidden;
+  color: black;
+  display: grid;
+  place-items: center;
 }

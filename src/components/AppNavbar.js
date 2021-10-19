@@ -6,11 +6,16 @@ import {
   faSearch,
   faBell,
   faUser,
+  faSignInAlt,
   faSignOutAlt,
   faChevronDown,
+  faUserPlus,
 } from "@fortawesome/free-solid-svg-icons";
+import { useSelector } from "react-redux";
 
 const AppNavbar = () => {
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
+
   /* EXPANDER MENU */
   const showMenu = (toggleId, navbarId) => {
     const toggle = document.getElementById(toggleId),
@@ -51,6 +56,34 @@ const AppNavbar = () => {
     }
   };
 
+  const authLink = (
+    <>
+      <a href="#!">
+        <FontAwesomeIcon icon={faBell} className="header__icon" />
+      </a>
+      <a href="/mypage">
+        <FontAwesomeIcon icon={faUser} className="header__icon" />
+      </a>
+      <a href="/logout">
+        <FontAwesomeIcon icon={faSignOutAlt} className="header__icon" />
+      </a>
+    </>
+  );
+
+  const guestLink = (
+    <>
+      <a href="#!">
+        <FontAwesomeIcon icon={faBell} className="header__icon" />
+      </a>
+      <a href="/login">
+        <FontAwesomeIcon icon={faSignInAlt} className="header__icon" />
+      </a>
+      <a href="/signup">
+        <FontAwesomeIcon icon={faUserPlus} className="header__icon" />
+      </a>
+    </>
+  );
+
   useEffect(() => {
     showMenu("nav-toggle", "navbar");
     linkColor();
@@ -63,7 +96,7 @@ const AppNavbar = () => {
       <header className="header">
         <div className="header__container">
           {/* <!-- 로고 --> */}
-          <a href="#!" className="header__logo">
+          <a href="/" className="header__logo">
             커피두잔
           </a>
 
@@ -80,17 +113,8 @@ const AppNavbar = () => {
           </div>
 
           {/* <!-- 메뉴 아이콘 --> */}
-          <div>
-            <a href="#!">
-              <FontAwesomeIcon icon={faBell} className="header__icon" />
-            </a>
-            <a href="#!">
-              <FontAwesomeIcon icon={faUser} className="header__icon" />
-            </a>
-            <a href="#!">
-              <FontAwesomeIcon icon={faSignOutAlt} className="header__icon" />
-            </a>
-          </div>
+          <div>{isAuthenticated ? authLink : guestLink}</div>
+          {/* <div>{isAuthenticated ? guestLink : authLink}</div> */}
         </div>
       </header>
 

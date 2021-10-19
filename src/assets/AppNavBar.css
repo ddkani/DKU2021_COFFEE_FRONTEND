@@ -4,7 +4,7 @@
 
 /* VARIABLES CSS */
 :root {
-  --nav--width: 92px;
+  --nav--width: 5.75rem;
   --header-height: 4.5rem;
   /* Colores */
   --first-color: #f4f0fa; /*카테고리 마우스 오버 색상*/
@@ -239,7 +239,7 @@ a {
 
 /* COLLAPSE */
 .collapse {
-  grid-template-columns: 20px max-content 1fr;
+  grid-template-columns: 1.25rem max-content 1fr;
   transition: 0.5s;
 }
 
@@ -280,7 +280,7 @@ a {
   transition: 0.5s;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 48rem) {
   body {
     padding: 1rem 3rem 0 6rem;
   }
@@ -291,7 +291,7 @@ a {
     height: calc(var(--header-height) + 0.5rem);
   }
   .header__search {
-    width: 300px;
+    width: 18.75rem;
     padding: 0.55rem 0.75rem;
   }
   .header__toggle {

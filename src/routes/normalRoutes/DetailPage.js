@@ -38,7 +38,7 @@ function DetailPage() {
 
   return (
     <>
-      <section>
+      <section className="p_section">
         <div className="contentWrap">
           <div className="imageWrap">
             <img className="sampleimg" src={sampleimg} alt="블레이저 미드" />
@@ -65,7 +65,7 @@ function DetailPage() {
       </section>
       <hr />
 
-      <section>
+      <section className="p_section">
         <div className="sampledetail">
           <p>
             나이키 에어맥스 95에는 놀랄만큼 편안한 착화감과 편안함과 시선을 사로
