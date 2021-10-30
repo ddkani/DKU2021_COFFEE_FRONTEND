@@ -1,6 +1,16 @@
 #main-body {
-  background-color: #fff;
-  color: black;
+  margin-top: 4.5rem;
   display: grid;
   place-items: center;
+}
+
+#page_wrap {
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+#footer {
+  height: 10rem;
+  display: grid;
 }

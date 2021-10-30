@@ -26,10 +26,7 @@ const SignupPage = () => {
   //   };
 
   return (
-    <div className="in_page">
-      <br />
-      <br />
-      <br />
+    <div id="page_wrap">
       <div className="wrapper">
         <div className="title">
           Signup Form

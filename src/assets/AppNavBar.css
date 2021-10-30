@@ -281,9 +281,6 @@ a {
 }
 
 @media screen and (min-width: 48rem) {
-  body {
-    padding: 1rem 3rem 0 6rem;
-  }
   .header {
     padding: 0 3rem 0 6rem;
   }

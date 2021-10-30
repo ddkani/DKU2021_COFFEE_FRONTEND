@@ -91,7 +91,7 @@ const AppNavbar = () => {
   }, []);
 
   return (
-    <div id="root">
+    <>
       {/* <!-- Header(상단 바) --> */}
       <header className="header">
         <div className="header__container">
@@ -273,7 +273,7 @@ const AppNavbar = () => {
           </div>
         </nav>
       </div>
-    </div>
+    </>
   );
 };
 
