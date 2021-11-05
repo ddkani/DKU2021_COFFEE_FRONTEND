@@ -23,13 +23,13 @@ const loginUserAPI = (loginData) => {
       "Content-Type": "application/json",
     },
   };
-  return axios.post("api/auth", loginData, config);
+  return axios.post("users/login/", loginData, config);
 };
 
 function* loginUser(action) {
   try {
     const result = yield call(loginUserAPI, action.payload);
-    console.log(result);
+    console.log(result, "login user data");
     yield put({
       type: LOGIN_SUCCESS,
       payload: result.data,
@@ -106,7 +106,7 @@ const registerUserAPI = (req) => {
       "Content-Type": "application/json",
     },
   };
-  return axios.post("api/user", req, config);
+  return axios.post("users/join/", req, config);
 };
 
 function* registerUser(action) {

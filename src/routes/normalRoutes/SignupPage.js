@@ -1,9 +1,15 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "../../assets/Login.css";
+import { REGISTER_REQUEST } from "../../redux/types";
+import { Link } from "react-router-dom";
 
 const SignupPage = () => {
+  const dispatch = useDispatch();
+  const { reqResult, errorMsg } = useSelector((state) => state.auth);
+
   const [form, setValues] = useState({
-    nickname: "",
+    username: "",
     email: "",
     password: "",
   });
@@ -15,15 +21,15 @@ const SignupPage = () => {
     });
   };
 
-  //   const onSubmit = (e) => {
-  //     const { email, password } = form;
-  //     const user = { email, password };
-  //     console.log(user);
-  //     dispatch({
-  //       type: LOGIN_REQUEST,
-  //       payload: user,
-  //     });
-  //   };
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const { username, email, password } = form;
+    const user = { username, email, password };
+    dispatch({
+      type: REGISTER_REQUEST,
+      payload: user,
+    });
+  };
 
   return (
     <div id="page_wrap">
@@ -32,13 +38,13 @@ const SignupPage = () => {
           Signup Form
           <span className="subtitle">커피두잔 상품 가격 비교 플랫폼</span>
         </div>
-        <form className="in_form">
+        <form className="in_form" onSubmit={onSubmit}>
           <div className="field">
             <input
               type="text"
               className="nickname"
               onChange={onChange}
-              name="nickname"
+              name="username"
               required
             />
             <label>Nickname</label>
@@ -68,10 +74,14 @@ const SignupPage = () => {
             <input type="submit" value="SignUp" />
           </div>
           <div className="login_link">
-            Already a member?{" "}
-            <a className="check_link" href="/login">
-              Login now
-            </a>
+            이미 회원이신가요?{" "}
+            <Link to="/login" className="check_link">
+              로그인
+            </Link>
+          </div>
+          <div id="error">{errorMsg}</div>
+          <div id="result">
+            {reqResult ? <p>회원가입이 성공했습니다!</p> : null}
           </div>
         </form>
       </div>

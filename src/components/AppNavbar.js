@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import "../assets/AppNavBar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -11,10 +11,20 @@ import {
   faChevronDown,
   faUserPlus,
 } from "@fortawesome/free-solid-svg-icons";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { LOGOUT_REQUEST } from "../redux/types";
+import { Link } from "react-router-dom";
 
 const AppNavbar = () => {
-  const { isAuthenticated, user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  const { isAuthenticated } = useSelector((state) => state.auth);
+
+  const onLogout = useCallback(() => {
+    dispatch({
+      type: LOGOUT_REQUEST,
+    });
+  }, [dispatch]);
 
   /* EXPANDER MENU */
   const showMenu = (toggleId, navbarId) => {
@@ -58,13 +68,13 @@ const AppNavbar = () => {
 
   const authLink = (
     <>
-      <a href="#!">
+      <Link to="#!">
         <FontAwesomeIcon icon={faBell} className="header__icon" />
-      </a>
-      <a href="/mypage">
+      </Link>
+      <Link to="/mypage">
         <FontAwesomeIcon icon={faUser} className="header__icon" />
-      </a>
-      <a href="/logout">
+      </Link>
+      <a href="#!" onClick={onLogout}>
         <FontAwesomeIcon icon={faSignOutAlt} className="header__icon" />
       </a>
     </>
@@ -72,9 +82,9 @@ const AppNavbar = () => {
 
   const guestLink = (
     <>
-      <a href="#!">
+      {/* <Link to="#!">
         <FontAwesomeIcon icon={faBell} className="header__icon" />
-      </a>
+      </Link> */}
       <a href="/login">
         <FontAwesomeIcon icon={faSignInAlt} className="header__icon" />
       </a>
@@ -96,9 +106,9 @@ const AppNavbar = () => {
       <header className="header">
         <div className="header__container">
           {/* <!-- 로고 --> */}
-          <a href="/" className="header__logo">
+          <Link to="/" className="header__logo">
             커피두잔
-          </a>
+          </Link>
 
           {/* <!-- 검색창 --> */}
           <div className="header__search">
@@ -154,19 +164,19 @@ const AppNavbar = () => {
 
                 <ul className="collapse__menu">
                   <li className="collapse__sublink">
-                    <a href="#!" className="collapse__sublink">
+                    <Link to="#!" className="collapse__sublink">
                       1
-                    </a>
+                    </Link>
                   </li>
                   <li className="collapse__sublink">
-                    <a href="#!" className="collapse__sublink">
+                    <Link to="#!" className="collapse__sublink">
                       2
-                    </a>
+                    </Link>
                   </li>
                   <li className="collapse__sublink">
-                    <a href="#!" className="collapse__sublink">
+                    <Link to="#!" className="collapse__sublink">
                       3
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -187,19 +197,19 @@ const AppNavbar = () => {
 
                 <ul className="collapse__menu">
                   <li className="collapse__sublink">
-                    <a href="#!" className="collapse__sublink">
+                    <Link to="#!" className="collapse__sublink">
                       1
-                    </a>
+                    </Link>
                   </li>
                   <li className="collapse__sublink">
-                    <a href="#!" className="collapse__sublink">
+                    <Link to="#!" className="collapse__sublink">
                       2
-                    </a>
+                    </Link>
                   </li>
                   <li className="collapse__sublink">
-                    <a href="#!" className="collapse__sublink">
+                    <Link to="#!" className="collapse__sublink">
                       3
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -220,19 +230,19 @@ const AppNavbar = () => {
 
                 <ul className="collapse__menu">
                   <li className="collapse__sublink">
-                    <a href="#!" className="collapse__sublink">
+                    <Link to="#!" className="collapse__sublink">
                       1
-                    </a>
+                    </Link>
                   </li>
                   <li className="collapse__sublink">
-                    <a href="#!" className="collapse__sublink">
+                    <Link to="#!" className="collapse__sublink">
                       2
-                    </a>
+                    </Link>
                   </li>
                   <li className="collapse__sublink">
-                    <a href="#!" className="collapse__sublink">
+                    <Link to="#!" className="collapse__sublink">
                       3
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -253,19 +263,19 @@ const AppNavbar = () => {
 
                 <ul className="collapse__menu">
                   <li className="collapse__sublink">
-                    <a href="#!" className="collapse__sublink">
+                    <Link to="#!" className="collapse__sublink">
                       1
-                    </a>
+                    </Link>
                   </li>
                   <li className="collapse__sublink">
-                    <a href="#!" className="collapse__sublink">
+                    <Link to="#!" className="collapse__sublink">
                       2
-                    </a>
+                    </Link>
                   </li>
                   <li className="collapse__sublink">
-                    <a href="#!" className="collapse__sublink">
+                    <Link to="#!" className="collapse__sublink">
                       3
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>

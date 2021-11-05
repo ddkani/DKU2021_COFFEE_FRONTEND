@@ -18,10 +18,10 @@ const initialState = {
   isAuthenticated: null,
   isLoading: false,
   user: "",
-  userId: "",
+  userEmail: "",
   userName: "",
-  userRole: "",
   errorMsg: "",
+  reqResult: null,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -30,22 +30,32 @@ const authReducer = (state = initialState, action) => {
     case LOGOUT_REQUEST:
     case LOGIN_REQUEST:
       return {
-        ...state, // 얕은 복사 이후에
-        errorMsg: "", // 변화시키고 싶은 상태 값을 적게된다
+        ...state, // 얕은 복사 이후에 // 변화시키고 싶은 상태 값을 적게된다
+        errorMsg: "",
         isLoading: true,
       };
 
     case REGISTER_SUCCESS:
+      localStorage.setItem("token", action.payload.token);
+      console.log(action);
+      return {
+        ...state,
+        ...action.payload,
+        isLoading: false,
+        errorMsg: action.payload.error_message,
+        reqResult: action.payload.result,
+      };
+
     case LOGIN_SUCCESS:
       localStorage.setItem("token", action.payload.token);
+      console.log(action);
       return {
         ...state,
         ...action.payload,
         isAuthenticated: true,
         isLoading: false,
-        userId: action.payload.user.id,
-        userRole: action.payload.user.role,
-        errorMsg: "",
+        errorMsg: action.payload.error_message,
+        reqResult: action.payload.result,
       };
 
     case REGISTER_FAILURE:
@@ -57,11 +67,11 @@ const authReducer = (state = initialState, action) => {
         ...action.payload,
         token: null,
         user: null,
-        userId: null,
+        userEmail: null,
         isAuthenticated: false,
         isLoading: false,
-        userRole: null,
-        errorMsg: action.payload.data.msg,
+        reqResult: false,
+        errorMsg: "front-end error",
       };
 
     case LOGOUT_SUCCESS:
@@ -71,10 +81,9 @@ const authReducer = (state = initialState, action) => {
         ...action.payload,
         token: null,
         user: null,
-        userId: null,
+        userEmail: null,
         isAuthenticated: false,
         isLoading: false,
-        userRole: null,
         errorMsg: "",
       };
 
@@ -90,9 +99,8 @@ const authReducer = (state = initialState, action) => {
         isAuthenticated: true,
         isLoading: false,
         user: action.payload,
-        userId: action.payload._id,
+        userEmail: action.payload._id,
         userName: action.payload.name,
-        userRole: action.payload.role,
       };
 
     case USER_LOADING_FAILURE:
@@ -101,7 +109,6 @@ const authReducer = (state = initialState, action) => {
         user: null,
         isAuthenticated: false,
         isLoading: false,
-        userRole: "",
       };
 
     default:
