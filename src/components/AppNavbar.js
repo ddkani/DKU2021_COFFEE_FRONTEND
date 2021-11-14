@@ -8,17 +8,23 @@ import {
   faUser,
   faSignInAlt,
   faSignOutAlt,
-  faChevronDown,
   faUserPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { LOGOUT_REQUEST } from "../redux/types";
+import { CATEGORY_LOADING_REQUEST, LOGOUT_REQUEST } from "../redux/types";
 import { Link } from "react-router-dom";
+import Categories from "./Categories";
 
 const AppNavbar = () => {
   const dispatch = useDispatch();
-
+  const { cList } = useSelector((state) => state.product);
   const { isAuthenticated } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    dispatch({ type: CATEGORY_LOADING_REQUEST });
+    showMenu("nav-toggle", "navbar");
+    linkColor();
+  }, [dispatch]);
 
   const onLogout = useCallback(() => {
     dispatch({
@@ -49,22 +55,23 @@ const AppNavbar = () => {
   };
 
   /* COLLAPSE MENU */
-  const collapse = () => {
-    const linkCollapse = document.getElementsByClassName("collapse__link");
-    var i;
+  // const collapse = () => {
+  //   const linkCollapse = document.getElementsByClassName("collapse__link");
+  //   console.log(linkCollapse);
+  //   var i;
 
-    for (i = 0; i < linkCollapse.length; i++) {
-      linkCollapse[i].addEventListener("click", function () {
-        const collapseMenu = this.nextElementSibling;
-        console.log("collapseMenu= ", collapseMenu);
-        collapseMenu.classList.toggle("showCollapse");
+  //   for (i = 0; i < linkCollapse.length; i++) {
+  //     linkCollapse[i].addEventListener("click", function () {
+  //       const collapseMenu = this.nextElementSibling;
+  //       console.log("collapseMenu= ", collapseMenu);
+  //       collapseMenu.classList.toggle("showCollapse");
 
-        const rotate = collapseMenu.previousElementSibling;
-        console.log("rotate: ", rotate);
-        rotate.classList.toggle("rotate");
-      });
-    }
-  };
+  //       const rotate = collapseMenu.previousElementSibling;
+  //       console.log("rotate: ", rotate);
+  //       rotate.classList.toggle("rotate");
+  //     });
+  //   }
+  // };
 
   const authLink = (
     <>
@@ -93,12 +100,6 @@ const AppNavbar = () => {
       </a>
     </>
   );
-
-  useEffect(() => {
-    showMenu("nav-toggle", "navbar");
-    linkColor();
-    collapse();
-  }, []);
 
   return (
     <>
@@ -143,142 +144,7 @@ const AppNavbar = () => {
 
             {/* <!-- 카테고리 --> */}
             <div className="nav__list">
-              <div
-                href="#!"
-                className="nav__link collapse"
-                style={{ display: "grid" }}
-              >
-                <div className="nav__icon"></div>
-                {/* <ion-icon name="home-outline" className="nav__icon"></ion-icon> */}
-                {/* <FontAwesomeIcon icon={faHome} className="nav__icon" /> */}
-                <span className="nav_name">생활</span>
-
-                <FontAwesomeIcon
-                  icon={faChevronDown}
-                  className="collapse__link"
-                />
-                {/* <ion-icon
-                  name="chevron-down-outline"
-                  className="collapse__link"
-                ></ion-icon> */}
-
-                <ul className="collapse__menu">
-                  <li className="collapse__sublink">
-                    <Link to="#!" className="collapse__sublink">
-                      1
-                    </Link>
-                  </li>
-                  <li className="collapse__sublink">
-                    <Link to="#!" className="collapse__sublink">
-                      2
-                    </Link>
-                  </li>
-                  <li className="collapse__sublink">
-                    <Link to="#!" className="collapse__sublink">
-                      3
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-
-              <div
-                href="#!"
-                className="nav__link collapse"
-                style={{ display: "grid" }}
-              >
-                <div className="nav__icon"></div>
-
-                <span className="nav_name">전자제품</span>
-
-                <FontAwesomeIcon
-                  icon={faChevronDown}
-                  className="collapse__link"
-                />
-
-                <ul className="collapse__menu">
-                  <li className="collapse__sublink">
-                    <Link to="#!" className="collapse__sublink">
-                      1
-                    </Link>
-                  </li>
-                  <li className="collapse__sublink">
-                    <Link to="#!" className="collapse__sublink">
-                      2
-                    </Link>
-                  </li>
-                  <li className="collapse__sublink">
-                    <Link to="#!" className="collapse__sublink">
-                      3
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-
-              <div
-                href="#!"
-                className="nav__link collapse"
-                style={{ display: "grid" }}
-              >
-                <div className="nav__icon"></div>
-
-                <span className="nav_name">음식</span>
-
-                <FontAwesomeIcon
-                  icon={faChevronDown}
-                  className="collapse__link"
-                />
-
-                <ul className="collapse__menu">
-                  <li className="collapse__sublink">
-                    <Link to="#!" className="collapse__sublink">
-                      1
-                    </Link>
-                  </li>
-                  <li className="collapse__sublink">
-                    <Link to="#!" className="collapse__sublink">
-                      2
-                    </Link>
-                  </li>
-                  <li className="collapse__sublink">
-                    <Link to="#!" className="collapse__sublink">
-                      3
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-
-              <div
-                href="#!"
-                className="nav__link collapse"
-                style={{ display: "grid" }}
-              >
-                <div className="nav__icon"></div>
-
-                <span className="nav_name">패션</span>
-
-                <FontAwesomeIcon
-                  icon={faChevronDown}
-                  className="collapse__link"
-                />
-
-                <ul className="collapse__menu">
-                  <li className="collapse__sublink">
-                    <Link to="#!" className="collapse__sublink">
-                      1
-                    </Link>
-                  </li>
-                  <li className="collapse__sublink">
-                    <Link to="#!" className="collapse__sublink">
-                      2
-                    </Link>
-                  </li>
-                  <li className="collapse__sublink">
-                    <Link to="#!" className="collapse__sublink">
-                      3
-                    </Link>
-                  </li>
-                </ul>
-              </div>
+              <Categories cList={cList} />
             </div>
           </div>
         </nav>
@@ -288,3 +154,140 @@ const AppNavbar = () => {
 };
 
 export default AppNavbar;
+
+// {/* <div
+//                 href="#!"
+//                 className="nav__link collapse"
+//                 style={{ display: "grid" }}
+//               >
+//                 <div className="nav__icon"></div>
+//                 {/* <ion-icon name="home-outline" className="nav__icon"></ion-icon> */}
+//                 {/* <FontAwesomeIcon icon={faHome} className="nav__icon" /> */}
+//                 <span className="nav_name">생활</span>
+
+//                 <FontAwesomeIcon
+//                   icon={faChevronDown}
+//                   className="collapse__link"
+//                 />
+//                 {/* <ion-icon
+//                   name="chevron-down-outline"
+//                   className="collapse__link"
+//                 ></ion-icon> */}
+
+//                 <ul className="collapse__menu">
+//                   <li className="collapse__sublink">
+//                     <Link to="#!" className="collapse__sublink">
+//                       1
+//                     </Link>
+//                   </li>
+//                   <li className="collapse__sublink">
+//                     <Link to="#!" className="collapse__sublink">
+//                       2
+//                     </Link>
+//                   </li>
+//                   <li className="collapse__sublink">
+//                     <Link to="#!" className="collapse__sublink">
+//                       3
+//                     </Link>
+//                   </li>
+//                 </ul>
+//               </div>
+
+//               <div
+//                 href="#!"
+//                 className="nav__link collapse"
+//                 style={{ display: "grid" }}
+//               >
+//                 <div className="nav__icon"></div>
+
+//                 <span className="nav_name">전자제품</span>
+
+//                 <FontAwesomeIcon
+//                   icon={faChevronDown}
+//                   className="collapse__link"
+//                 />
+
+//                 <ul className="collapse__menu">
+//                   <li className="collapse__sublink">
+//                     <Link to="#!" className="collapse__sublink">
+//                       1
+//                     </Link>
+//                   </li>
+//                   <li className="collapse__sublink">
+//                     <Link to="#!" className="collapse__sublink">
+//                       2
+//                     </Link>
+//                   </li>
+//                   <li className="collapse__sublink">
+//                     <Link to="#!" className="collapse__sublink">
+//                       3
+//                     </Link>
+//                   </li>
+//                 </ul>
+//               </div>
+
+//               <div
+//                 href="#!"
+//                 className="nav__link collapse"
+//                 style={{ display: "grid" }}
+//               >
+//                 <div className="nav__icon"></div>
+
+//                 <span className="nav_name">음식</span>
+
+//                 <FontAwesomeIcon
+//                   icon={faChevronDown}
+//                   className="collapse__link"
+//                 />
+
+//                 <ul className="collapse__menu">
+//                   <li className="collapse__sublink">
+//                     <Link to="#!" className="collapse__sublink">
+//                       1
+//                     </Link>
+//                   </li>
+//                   <li className="collapse__sublink">
+//                     <Link to="#!" className="collapse__sublink">
+//                       2
+//                     </Link>
+//                   </li>
+//                   <li className="collapse__sublink">
+//                     <Link to="#!" className="collapse__sublink">
+//                       3
+//                     </Link>
+//                   </li>
+//                 </ul>
+//               </div>
+
+//               <div
+//                 href="#!"
+//                 className="nav__link collapse"
+//                 style={{ display: "grid" }}
+//               >
+//                 <div className="nav__icon"></div>
+
+//                 <span className="nav_name">패션</span>
+
+//                 <FontAwesomeIcon
+//                   icon={faChevronDown}
+//                   className="collapse__link"
+//                 />
+
+//                 <ul className="collapse__menu">
+//                   <li className="collapse__sublink">
+//                     <Link to="#!" className="collapse__sublink">
+//                       1
+//                     </Link>
+//                   </li>
+//                   <li className="collapse__sublink">
+//                     <Link to="#!" className="collapse__sublink">
+//                       2
+//                     </Link>
+//                   </li>
+//                   <li className="collapse__sublink">
+//                     <Link to="#!" className="collapse__sublink">
+//                       3
+//                     </Link>
+//                   </li>
+//                 </ul>
+//               </div> */}

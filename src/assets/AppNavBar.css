@@ -219,10 +219,6 @@ a {
   cursor: pointer;
 }
 
-/* .nav__link:hover {
-  background-color: var(--first-color);
-} */
-
 .nav__icon {
   font-size: 1.25rem;
 }
@@ -262,6 +258,7 @@ a {
   color: var(--text-color);
   font-size: var(--small-font-size);
   text-decoration: none;
+  width: max-content;
 }
 
 .collapse__sublink:hover {

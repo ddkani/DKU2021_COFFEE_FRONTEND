@@ -5,7 +5,7 @@ import AppNavbar from "../components/AppNavbar";
 import DetailPage from "./normalRoutes/DetailPage";
 import LoginPage from "./normalRoutes/LoginPage";
 import SignupPage from "./normalRoutes/SignupPage";
-import Footer from "../components/Footer";
+import ListPage from "./normalRoutes/ListPage";
 
 const MyRouter = () => {
   return (
@@ -17,10 +17,10 @@ const MyRouter = () => {
           <Route path="/details" exact component={DetailPage} />
           <Route path="/login" exact component={LoginPage} />
           <Route path="/signup" exact component={SignupPage} />
+          <Route path="/list" exact component={ListPage} />
           <Redirect from="*" to="/" />
         </Switch>
       </div>
-      <Footer />
     </>
   );
 };
