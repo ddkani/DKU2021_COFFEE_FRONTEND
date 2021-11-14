@@ -144,6 +144,18 @@ const AppNavbar = () => {
 
             {/* <!-- 카테고리 --> */}
             <div className="nav__list">
+              <Link to="/list" style={{ textDecoration: "none" }}>
+                <div
+                  href="#!"
+                  className="nav__link collapse"
+                  style={{ display: "grid" }}
+                >
+                  <div className="nav__icon"></div>
+                  <span className="nav_name" style={{ fontSize: "1.2rem" }}>
+                    모든 상품 보기
+                  </span>
+                </div>
+              </Link>
               <Categories cList={cList} />
             </div>
           </div>
@@ -154,140 +166,3 @@ const AppNavbar = () => {
 };
 
 export default AppNavbar;
-
-// {/* <div
-//                 href="#!"
-//                 className="nav__link collapse"
-//                 style={{ display: "grid" }}
-//               >
-//                 <div className="nav__icon"></div>
-//                 {/* <ion-icon name="home-outline" className="nav__icon"></ion-icon> */}
-//                 {/* <FontAwesomeIcon icon={faHome} className="nav__icon" /> */}
-//                 <span className="nav_name">생활</span>
-
-//                 <FontAwesomeIcon
-//                   icon={faChevronDown}
-//                   className="collapse__link"
-//                 />
-//                 {/* <ion-icon
-//                   name="chevron-down-outline"
-//                   className="collapse__link"
-//                 ></ion-icon> */}
-
-//                 <ul className="collapse__menu">
-//                   <li className="collapse__sublink">
-//                     <Link to="#!" className="collapse__sublink">
-//                       1
-//                     </Link>
-//                   </li>
-//                   <li className="collapse__sublink">
-//                     <Link to="#!" className="collapse__sublink">
-//                       2
-//                     </Link>
-//                   </li>
-//                   <li className="collapse__sublink">
-//                     <Link to="#!" className="collapse__sublink">
-//                       3
-//                     </Link>
-//                   </li>
-//                 </ul>
-//               </div>
-
-//               <div
-//                 href="#!"
-//                 className="nav__link collapse"
-//                 style={{ display: "grid" }}
-//               >
-//                 <div className="nav__icon"></div>
-
-//                 <span className="nav_name">전자제품</span>
-
-//                 <FontAwesomeIcon
-//                   icon={faChevronDown}
-//                   className="collapse__link"
-//                 />
-
-//                 <ul className="collapse__menu">
-//                   <li className="collapse__sublink">
-//                     <Link to="#!" className="collapse__sublink">
-//                       1
-//                     </Link>
-//                   </li>
-//                   <li className="collapse__sublink">
-//                     <Link to="#!" className="collapse__sublink">
-//                       2
-//                     </Link>
-//                   </li>
-//                   <li className="collapse__sublink">
-//                     <Link to="#!" className="collapse__sublink">
-//                       3
-//                     </Link>
-//                   </li>
-//                 </ul>
-//               </div>
-
-//               <div
-//                 href="#!"
-//                 className="nav__link collapse"
-//                 style={{ display: "grid" }}
-//               >
-//                 <div className="nav__icon"></div>
-
-//                 <span className="nav_name">음식</span>
-
-//                 <FontAwesomeIcon
-//                   icon={faChevronDown}
-//                   className="collapse__link"
-//                 />
-
-//                 <ul className="collapse__menu">
-//                   <li className="collapse__sublink">
-//                     <Link to="#!" className="collapse__sublink">
-//                       1
-//                     </Link>
-//                   </li>
-//                   <li className="collapse__sublink">
-//                     <Link to="#!" className="collapse__sublink">
-//                       2
-//                     </Link>
-//                   </li>
-//                   <li className="collapse__sublink">
-//                     <Link to="#!" className="collapse__sublink">
-//                       3
-//                     </Link>
-//                   </li>
-//                 </ul>
-//               </div>
-
-//               <div
-//                 href="#!"
-//                 className="nav__link collapse"
-//                 style={{ display: "grid" }}
-//               >
-//                 <div className="nav__icon"></div>
-
-//                 <span className="nav_name">패션</span>
-
-//                 <FontAwesomeIcon
-//                   icon={faChevronDown}
-//                   className="collapse__link"
-//                 />
-
-//                 <ul className="collapse__menu">
-//                   <li className="collapse__sublink">
-//                     <Link to="#!" className="collapse__sublink">
-//                       1
-//                     </Link>
-//                   </li>
-//                   <li className="collapse__sublink">
-//                     <Link to="#!" className="collapse__sublink">
-//                       2
-//                     </Link>
-//                   </li>
-//                   <li className="collapse__sublink">
-//                     <Link to="#!" className="collapse__sublink">
-//                       3
-//                     </Link>
-//                   </li>
-//                 </ul>
-//               </div> */}
