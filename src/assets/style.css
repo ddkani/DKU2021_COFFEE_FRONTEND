@@ -44,3 +44,13 @@
 .cards {
   grid-template-columns: 1fr 1fr;
 }
+
+.no_deco {
+  text-decoration: none;
+  color: black;
+}
+
+.alarmbtn {
+  border: 1.875rem;
+  border-radius: 0.938rem;
+}

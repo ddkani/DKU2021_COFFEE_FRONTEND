@@ -14,7 +14,7 @@ const MyRouter = () => {
       <div id="main-body">
         <Switch>
           <Route path="/" exact component={LandingPage} />
-          <Route path="/details" exact component={DetailPage} />
+          <Route path="/product/:id" exact component={DetailPage} />
           <Route path="/login" exact component={LoginPage} />
           <Route path="/signup" exact component={SignupPage} />
           <Route path="/list" exact component={ListPage} />

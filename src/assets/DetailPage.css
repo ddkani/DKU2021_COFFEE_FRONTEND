@@ -58,11 +58,6 @@ section.active .imageWrap img {
   margin-bottom: 0.313rem;
 }
 
-.buyWrap .alarmbtn {
-  border: 1.875rem;
-  border-radius: 0.938rem;
-}
-
 .p_section {
   position: inherit;
   height: 100vh;

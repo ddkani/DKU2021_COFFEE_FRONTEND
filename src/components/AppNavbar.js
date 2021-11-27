@@ -11,11 +11,16 @@ import {
   faUserPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { CATEGORY_LOADING_REQUEST, LOGOUT_REQUEST } from "../redux/types";
-import { Link } from "react-router-dom";
+import {
+  CATEGORY_LOADING_REQUEST,
+  LOGOUT_REQUEST,
+  PRODUCT_SEARCH_REQUEST,
+} from "../redux/types";
+import { Link, useHistory } from "react-router-dom";
 import Categories from "./Categories";
 
 const AppNavbar = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const { cList } = useSelector((state) => state.product);
   const { isAuthenticated } = useSelector((state) => state.auth);
@@ -54,24 +59,15 @@ const AppNavbar = () => {
     linkColor.forEach((l) => l.addEventListener("click", colorLink));
   };
 
-  /* COLLAPSE MENU */
-  // const collapse = () => {
-  //   const linkCollapse = document.getElementsByClassName("collapse__link");
-  //   console.log(linkCollapse);
-  //   var i;
-
-  //   for (i = 0; i < linkCollapse.length; i++) {
-  //     linkCollapse[i].addEventListener("click", function () {
-  //       const collapseMenu = this.nextElementSibling;
-  //       console.log("collapseMenu= ", collapseMenu);
-  //       collapseMenu.classList.toggle("showCollapse");
-
-  //       const rotate = collapseMenu.previousElementSibling;
-  //       console.log("rotate: ", rotate);
-  //       rotate.classList.toggle("rotate");
-  //     });
-  //   }
-  // };
+  const productSearch = () => {
+    history.push("/list");
+    const param = document.querySelector(".header__input").value;
+    console.log(param);
+    dispatch({
+      type: PRODUCT_SEARCH_REQUEST,
+      payload: param,
+    });
+  };
 
   const authLink = (
     <>
@@ -89,9 +85,6 @@ const AppNavbar = () => {
 
   const guestLink = (
     <>
-      {/* <Link to="#!">
-        <FontAwesomeIcon icon={faBell} className="header__icon" />
-      </Link> */}
       <a href="/login">
         <FontAwesomeIcon icon={faSignInAlt} className="header__icon" />
       </a>
@@ -118,14 +111,19 @@ const AppNavbar = () => {
               placeholder="Search"
               className="header__input"
             />
-            <button className="search__btn" type="submit" name="click" value="">
+            <button
+              className="search__btn"
+              type="submit"
+              name="click"
+              value=""
+              onClick={productSearch}
+            >
               <FontAwesomeIcon icon={faSearch} className="search__icon" />
             </button>
           </div>
 
           {/* <!-- 메뉴 아이콘 --> */}
           <div>{isAuthenticated ? authLink : guestLink}</div>
-          {/* <div>{isAuthenticated ? guestLink : authLink}</div> */}
         </div>
       </header>
 
