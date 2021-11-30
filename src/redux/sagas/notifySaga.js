@@ -13,6 +13,9 @@ import {
   SET_NOTIFY_FAILURE,
   SET_NOTIFY_REQUEST,
   SET_NOTIFY_SUCCESS,
+  GET_NOTIFIED_PRODUCT_SUCCESS,
+  GET_NOTIFIED_PRODUCT_FAILURE,
+  GET_NOTIFIED_PRODUCT_REQUEST,
 } from "../types";
 
 // GET NOTIFY
@@ -20,7 +23,7 @@ const getNotifyAPI = () => {
   const config = {
     headers: {
       "Content-Type": "application/json",
-      Authorization: `${localStorage.getItem("token")}`,
+      Authorization: `Token ${localStorage.getItem("token")}`,
     },
   };
   return axios.get("notifies/get_notify", config);
@@ -52,7 +55,7 @@ const readNotifyAPI = (req) => {
   const config = {
     headers: {
       "Content-Type": "application/json",
-      Authorization: `${localStorage.getItem("token")}`,
+      Authorization: `Token ${localStorage.getItem("token")}`,
     },
   };
   return axios.post("notifies/read_notify", req, config);
@@ -142,11 +145,43 @@ function* watchSetNotify() {
   yield takeEvery(SET_NOTIFY_REQUEST, setNotify);
 }
 
+// GET NOTIFIED PRODUCTS
+const getNotifiedProductAPI = () => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Token ${localStorage.getItem("token")}`,
+    },
+  };
+  return axios.get("notifies/get_product_notify", config);
+};
+
+function* getNotifiedProduct(action) {
+  try {
+    const result = yield call(getNotifiedProductAPI, action.payload);
+    yield put({
+      type: GET_NOTIFIED_PRODUCT_SUCCESS,
+      payload: result.data,
+    });
+  } catch (e) {
+    yield put({
+      type: GET_NOTIFIED_PRODUCT_FAILURE,
+      payload: e.response,
+    });
+    console.log(e, "error");
+  }
+}
+
+function* watchGetNotifiedProduct() {
+  yield takeEvery(GET_NOTIFIED_PRODUCT_REQUEST, getNotifiedProduct);
+}
+
 export default function* productSaga() {
   yield all([
     fork(watchGetNotify),
     fork(watchReadNotify),
     fork(watchRemoveNotify),
     fork(watchSetNotify),
+    fork(watchGetNotifiedProduct),
   ]);
 }

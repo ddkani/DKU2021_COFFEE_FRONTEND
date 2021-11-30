@@ -15,6 +15,7 @@ import {
   CATEGORY_LOADING_REQUEST,
   LOGOUT_REQUEST,
   PRODUCT_SEARCH_REQUEST,
+  USER_LOADING_REQUEST,
 } from "../redux/types";
 import { Link, useHistory } from "react-router-dom";
 import Categories from "./Categories";
@@ -27,6 +28,7 @@ const AppNavbar = () => {
 
   useEffect(() => {
     dispatch({ type: CATEGORY_LOADING_REQUEST });
+    dispatch({ type: USER_LOADING_REQUEST });
     showMenu("nav-toggle", "navbar");
     linkColor();
   }, [dispatch]);

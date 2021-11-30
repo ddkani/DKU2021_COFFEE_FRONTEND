@@ -65,17 +65,10 @@ function* watchLogoutUser() {
 }
 
 // User Loading
-const userLoadingAPI = (token) => {
-  console.log(token);
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-  if (token) {
-    config.headers["x-auth-token"] = token;
-  }
-  return axios.get("api/auth/user", config); // 해당 토큰을 가진 유저가 존재하는지 계속 알아봄.
+const userLoadingAPI = () => {
+  const token = localStorage.getItem("token");
+  if (token != null) return true;
+  else return false;
 };
 
 function* userLoading(action) {
@@ -84,7 +77,7 @@ function* userLoading(action) {
     const result = yield call(userLoadingAPI, action.payload);
     yield put({
       type: USER_LOADING_SUCCESS,
-      payload: result.data,
+      payload: result,
     });
   } catch (e) {
     yield put({

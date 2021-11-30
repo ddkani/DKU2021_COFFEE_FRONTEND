@@ -11,6 +11,8 @@ import {
   SET_NOTIFY_FAILURE,
   SET_NOTIFY_REQUEST,
   SET_NOTIFY_SUCCESS,
+  GET_NOTIFIED_PRODUCT_REQUEST,
+  GET_NOTIFIED_PRODUCT_SUCCESS,
 } from "../types";
 
 const initialState = {
@@ -18,6 +20,7 @@ const initialState = {
   isLoading: false,
   reqResult: null,
   errorMsg: "",
+  notified_List: null,
 };
 
 const notifyReducer = (state = initialState, action) => {
@@ -26,10 +29,21 @@ const notifyReducer = (state = initialState, action) => {
     case READ_NOTIFY_REQUEST:
     case REMOVE_NOTIFY_REQUEST:
     case SET_NOTIFY_REQUEST:
+    case GET_NOTIFIED_PRODUCT_REQUEST:
       return {
         ...state,
         errorMsg: "",
         isLoading: true,
+      };
+
+    case GET_NOTIFIED_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        ...action.payload,
+        isLoading: false,
+        notified_List: action.payload,
+        errorMsg: action.payload.error_message,
+        reqResult: action.payload.result,
       };
 
     case GET_NOTIFY_SUCCESS:
@@ -37,7 +51,7 @@ const notifyReducer = (state = initialState, action) => {
         ...state,
         ...action.payload,
         isLoading: false,
-        nList: [...state.pList, ...action.payload],
+        nList: [action.payload],
         errorMsg: action.payload.error_message,
         reqResult: action.payload.result,
       };

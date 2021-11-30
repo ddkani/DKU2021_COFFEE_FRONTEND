@@ -5,7 +5,6 @@ import { PRODUCT_LOADING_REQUEST } from "../../redux/types";
 
 const ListPage = () => {
   const { pList } = useSelector((state) => state.product);
-  console.log(pList);
   const dispatch = useDispatch();
 
   useEffect(() => {

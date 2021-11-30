@@ -1,42 +1,59 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { REMOVE_NOTIFY_REQUEST, SET_NOTIFY_REQUEST } from "../redux/types";
-import { Link, useHistory } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  REMOVE_NOTIFY_REQUEST,
+  SET_NOTIFY_REQUEST,
+  GET_NOTIFIED_PRODUCT_REQUEST,
+} from "../redux/types";
+import { Link } from "react-router-dom";
 
 const ProductCardOne = ({ pList }) => {
   const dispatch = useDispatch();
-  const history = useHistory();
+
+  useEffect(() => {
+    dispatch({ type: GET_NOTIFIED_PRODUCT_REQUEST });
+  }, [dispatch]);
+
+  const { notified_List } = useSelector((state) => state.notify);
+  const { isAuthenticated } = useSelector((state) => state.auth);
+  const id_list = [];
+
   const setNotify = (product_id) => {
-    const pid = product_id;
+    if (!isAuthenticated) {
+      alert("로그인 후 이용해주세요 ! ");
+    }
     product_id = { product_id };
     dispatch({
       type: SET_NOTIFY_REQUEST,
       payload: product_id,
     });
-    localStorage.setItem(`p${pid}`, pid);
-    history.push("/list");
+    window.location.replace("/list");
   };
 
   const removeNotify = (product_id) => {
-    const pid = product_id;
     product_id = { product_id };
     dispatch({
       type: REMOVE_NOTIFY_REQUEST,
       payload: product_id,
     });
-    localStorage.removeItem(`p${pid}`);
-    history.push("/list");
+    window.location.replace("/list");
   };
 
-  const alarmBtn = (product_id) => {
-    const pId = localStorage.getItem(`p${product_id}`);
+  const checkId = (id) => {
+    notified_List &&
+      notified_List.map((notified_obj) =>
+        id_list.push(notified_obj.product_id)
+      );
+    return id_list.includes(id);
+  };
 
-    if (Number(pId) === product_id) {
+  const alarmBtn = (id) => {
+    if (isAuthenticated && checkId(id)) {
       return (
         <button
           className="alarmbtn"
           type="button"
-          onClick={() => removeNotify(product_id)}
+          onClick={() => removeNotify(id)}
         >
           🔔❌ 알림해제
         </button>
@@ -46,7 +63,7 @@ const ProductCardOne = ({ pList }) => {
         <button
           className="alarmbtn"
           type="button"
-          onClick={() => setNotify(product_id)}
+          onClick={() => setNotify(id)}
         >
           🔔 알람설정
         </button>
