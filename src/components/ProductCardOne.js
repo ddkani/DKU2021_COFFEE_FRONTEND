@@ -78,7 +78,7 @@ const ProductCardOne = ({ pList }) => {
             return (
               <div id="items" className="card_one" key={id}>
                 <Link to={`/product/${id}`} className="no_deco" key={id}>
-                  <img src={display_image} alt="Product_img" />
+                  <img src={display_image} id="img" alt="Product_img" />
                 </Link>
                 <div style={{ width: "20rem" }}>
                   <h4>{name}</h4>
